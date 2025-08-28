@@ -1,5 +1,5 @@
-CREATE SCHEMA clinica;
-
+CREATE SCHEMA clinica IF NOT EXISTS;
+SET search_path TO clinica;
 
 CREATE TABLE clinica.medico (id_medico INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 								nome TEXT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE clinica.clinica (id_clinica INT PRIMARY KEY GENERATED ALWAYS AS IDE
 
 CREATE TABLE clinica.consulta (id_consulta INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 								data_consulta TIMESTAMPTZ,
-								valor NUMERIC(10,4),
+								valor NUMERIC(10,4), -- 10 digitos totais, considerando as 4 apos a virgula
 								-- metodo extenso
 								id_clinica INT NOT NULL,
 								FOREIGN KEY (id_clinica) REFERENCES clinica.clinica(id_clinica),
@@ -29,5 +29,15 @@ CREATE TABLE clinica.consulta (id_consulta INT PRIMARY KEY GENERATED ALWAYS AS I
 
 
 -- Apagar tabela ou schema
-drop table clinica.clinica
-drop schema clinica
+-- DROP TABLE IF EXISTS clinica.clinica
+-- DROP SCHEMA clinica
+
+
+ALTER TABLE clinica.consulta RENAME valor TO valor_consulta; -- alterando nome da coluna
+ALTER TABLE clinica.consulta RENAME TO clinica.consulta_medica; -- alterando nome da tabela
+
+
+-- Apaga todas as linhas da tabela
+-- TRUNCATE TABLE clinica.consulta;
+-- Reinicia a sequencia das PKs
+-- RESTART IDENTITY;

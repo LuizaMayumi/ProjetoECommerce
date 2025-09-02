@@ -1,3 +1,4 @@
+
 CREATE SCHEMA clinica IF NOT EXISTS;
 SET search_path TO clinica;
 

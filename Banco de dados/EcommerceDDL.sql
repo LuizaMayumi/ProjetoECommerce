@@ -1,3 +1,4 @@
+
 CREATE SCHEMA ecommerce;
 
 CREATE TABLE ecommerce.cliente (cliente_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

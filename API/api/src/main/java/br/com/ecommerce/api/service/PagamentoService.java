@@ -1,8 +1,10 @@
 package br.com.ecommerce.api.service;
 
-import br.com.ecommerce.api.repository.ClienteRepository;
+import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PagamentoService {
@@ -11,5 +13,9 @@ public class PagamentoService {
 
     public PagamentoService(PagamentoRepository repo){
         pagamentoRepository = repo;
+    }
+
+    public List<Pagamento> findAll() {
+        return pagamentoRepository.findAll();
     }
 }

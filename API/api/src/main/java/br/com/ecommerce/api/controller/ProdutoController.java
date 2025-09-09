@@ -26,6 +26,10 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<Produto> postProduto(@RequestBody Produto pr){
         Produto produto = produtoService.cadastraProduto(pr);
+
+        if (produto == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pr);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
 }

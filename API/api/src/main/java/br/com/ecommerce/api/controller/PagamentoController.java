@@ -27,10 +27,10 @@ public class PagamentoController {
     public ResponseEntity<Pagamento> cadastrarPagamento(@RequestBody Pagamento pg){
         Pagamento pagamento = pagamentoService.cadastrarPagamento(pg);
 
-        if (pagamento != null){
+        if (pagamento == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pagamento);
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
     }
 }

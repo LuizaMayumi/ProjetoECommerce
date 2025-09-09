@@ -30,6 +30,7 @@ public class ProdutoController {
         if (produto == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pr);
         }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
 }

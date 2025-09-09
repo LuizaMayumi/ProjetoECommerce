@@ -27,7 +27,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido p){
         Pedido pedido = pedidoService.criarPedido(p);
-        if (pedido != null){
+        if (pedido == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pedido);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);

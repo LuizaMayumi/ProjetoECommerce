@@ -17,4 +17,8 @@ public class ItemPedidoService {
     public List<ItemPedido> findAll() {
         return itemPedidoRepository.findAll();
     }
+
+    public ItemPedido criarItemPedido(ItemPedido itemPedido){
+        return itemPedidoRepository.save(itemPedido);
+    }
 }

@@ -1,10 +1,12 @@
 package br.com.ecommerce.api.service;
 
+import br.com.ecommerce.api.dto.PagamentoDTO;
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PagamentoService {
@@ -15,8 +17,22 @@ public class PagamentoService {
         pagamentoRepository = repo;
     }
 
-    public List<Pagamento> findAll() {
-        return pagamentoRepository.findAll();
+    public List<PagamentoDTO> findAll() {
+        List<Pagamento> pagamentos =  pagamentoRepository.findAll();
+        return pagamentos.stream()
+                .map(this::converterParaListagemDTO)
+                .collect(Collectors.toList());
+    }
+
+    private PagamentoDTO converterParaListagemDTO(Pagamento pagamento) {
+        PagamentoDTO dto = new PagamentoDTO();
+
+        // Mapeamento campo a campo
+        dto.setFormaPagamento(pagamento.getFormaPagamento());
+        dto.setStatus(pagamento.getStatus());
+        dto.setDataPagamento(pagamento.getDataPagamento());
+
+        return dto;
     }
 
     public Pagamento cadastrarPagamento(Pagamento pg){

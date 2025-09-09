@@ -1,5 +1,7 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.dto.PagamentoCadastroDTO;
+import br.com.ecommerce.api.dto.PagamentoDTO;
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.service.PagamentoService;
 import org.springframework.http.HttpStatus;
@@ -18,8 +20,8 @@ public class PagamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Pagamento>> getAllPagamento(){
-        List<Pagamento> pagamentos = pagamentoService.findAll();
+    public ResponseEntity<List<PagamentoDTO>> getAllPagamento(){
+        List<PagamentoDTO> pagamentos = pagamentoService.findAll();
         return ResponseEntity.ok(pagamentos);
     }
 

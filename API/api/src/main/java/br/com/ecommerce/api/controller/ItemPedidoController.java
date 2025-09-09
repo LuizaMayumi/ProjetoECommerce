@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.dto.itemPedidoDTO;
 import br.com.ecommerce.api.model.ItemPedido;
 import br.com.ecommerce.api.service.ItemPedidoService;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class ItemPedidoController {
         List<ItemPedido> itemPedidos = itemPedidoService.findAll();
         return ResponseEntity.ok(itemPedidos);
     }
-
+    
     @PostMapping
     public ResponseEntity<ItemPedido> criarItemPedido(@RequestBody ItemPedido ip){
         ItemPedido itemPedido = itemPedidoService.criarItemPedido(ip);
@@ -31,7 +32,7 @@ public class ItemPedidoController {
         if (itemPedido == null){
             return ResponseEntity.badRequest().build();
         }
-
+        
         return ResponseEntity.status(HttpStatus.CREATED).body(itemPedido);
     }
 }

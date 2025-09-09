@@ -18,4 +18,8 @@ public class PagamentoService {
     public List<Pagamento> findAll() {
         return pagamentoRepository.findAll();
     }
+
+    public Pagamento cadastrarPagamento(Pagamento pg){
+        return pagamentoRepository.save(pg);
+    }
 }

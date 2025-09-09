@@ -2,10 +2,9 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Pedido;
 import br.com.ecommerce.api.service.PedidoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,14 @@ public class PedidoController {
     public ResponseEntity<List<Pedido>> getAllPedido(){
         List<Pedido> pedidos = pedidoService.findAll();
         return ResponseEntity.ok(pedidos);
+    }
+
+    @PostMapping
+    public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido p){
+        Pedido pedido = pedidoService.criarPedido(p);
+        if (pedido != null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pedido);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
 }

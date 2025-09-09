@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "Ecommerce API",
                 version = "v1.0.0",
-                description = "API para gerenciamento de produtos."
+                description = "API para gerenciamento de e-commerce."
         )
 )
 

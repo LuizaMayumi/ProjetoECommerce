@@ -35,4 +35,27 @@ public class PagamentoController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPagamentoById(@PathVariable Integer id){
+        Pagamento pagamento = pagamentoService.pagamentoGetById(id);
+
+        if (pagamento == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Metodo de pagamento nao encontrado");
+        }
+
+        return ResponseEntity.ok(pagamento);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePagamentoById(@PathVariable Integer id){
+        Pagamento pagamento = pagamentoService.deletePagamentoById(id);
+
+        if (pagamento == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Metodo de pagamento nao encontrado");
+        }
+
+        return ResponseEntity.ok(pagamento);
+    }
 }

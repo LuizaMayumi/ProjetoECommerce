@@ -38,4 +38,19 @@ public class PagamentoService {
     public Pagamento cadastrarPagamento(Pagamento pg){
         return pagamentoRepository.save(pg);
     }
+
+    public Pagamento pagamentoGetById(Integer id) {
+        return pagamentoRepository.findById(id).orElse(null);
+    }
+
+    public Pagamento deletePagamentoById(Integer id){
+        Pagamento pagamento = pagamentoGetById(id);
+
+        if(pagamento == null){
+            return null;
+        }
+
+        pagamentoRepository.delete(pagamento);
+        return pagamento;
+    }
 }

@@ -32,4 +32,7 @@ public class PedidoController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> pedidoGetById(@RequestParam Integer id){}
 }

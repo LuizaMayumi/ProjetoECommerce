@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -32,5 +33,29 @@ public class ProdutoController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProdutoById(@PathVariable Integer id){
+        Produto produto = produtoService.produtoGetById(id);
+
+        if (produto == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Produto nao encontrado");
+        }
+
+        return ResponseEntity.ok(produto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProdutoById(@PathVariable Integer id, Principal principal){
+        Produto produto = produtoService.deleteProdutoById(id);
+
+        if (produto == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Produto nao encontrado");
+        }
+
+        return ResponseEntity.ok(produto);
     }
 }

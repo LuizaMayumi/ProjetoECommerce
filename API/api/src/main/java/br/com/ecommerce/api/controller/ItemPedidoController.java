@@ -35,4 +35,27 @@ public class ItemPedidoController {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(itemPedido);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getItemPedidoById(@PathVariable Integer id){
+        ItemPedido itemPedido = itemPedidoService.itemPedidoById(id);
+
+        if (itemPedido == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).
+                    body("Item nao encontrado");
+        }
+        return ResponseEntity.ok(itemPedido);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteItemPedidoById(@PathVariable Integer id){
+        ItemPedido itemPedido = itemPedidoService.delteItemPedido(id);
+
+        if (itemPedido == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Item nao encontrado");
+        }
+
+        return ResponseEntity.ok(itemPedido);
+    }
 }

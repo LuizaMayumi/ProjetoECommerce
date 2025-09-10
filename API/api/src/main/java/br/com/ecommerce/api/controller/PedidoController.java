@@ -34,5 +34,14 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pedido> pedidoGetById(@RequestParam Integer id){}
+    public ResponseEntity<?> pedidoGetById(@RequestParam Integer id){
+        Pedido pedido = pedidoService.pedidoGetById(id);
+
+        if (pedido == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Pedido nao encontrado");
+        }
+
+        return ResponseEntity.ok(pedido);
+    }
 }

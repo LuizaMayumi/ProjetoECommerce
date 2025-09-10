@@ -21,4 +21,19 @@ public class ItemPedidoService {
     public ItemPedido criarItemPedido(ItemPedido itemPedido){
         return itemPedidoRepository.save(itemPedido);
     }
+
+    public ItemPedido itemPedidoById(Integer id){
+        return itemPedidoRepository.findById(id).orElse(null);
+    }
+
+    public ItemPedido delteItemPedido(Integer id){
+        ItemPedido itemPedido = itemPedidoById(id);
+
+        if (itemPedido == null){
+            return null;
+        }
+
+        itemPedidoRepository.delete(itemPedido);
+        return itemPedido;
+    }
 }

@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -48,7 +47,7 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProdutoById(@PathVariable Integer id, Principal principal){
+    public ResponseEntity<?> deleteProdutoById(@PathVariable Integer id){
         Produto produto = produtoService.deleteProdutoById(id);
 
         if (produto == null){

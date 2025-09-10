@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.service;
 
+import br.com.ecommerce.api.dto.ProdutoDTO;
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,29 @@ public class ProdutoService {
 
         produtoRepository.delete(produto);
         return produto;
+    }
+
+    public Produto updateProduto(Produto produto){
+        Produto prod =  produtoGetById(produto.getId());
+
+        if (prod == null){
+            return null;
+        }
+
+        prod.setDescricao(produto.getDescricao());
+        prod.setPreco(produto.getPreco());
+        return produtoRepository.save(prod);
+    }
+
+    public ProdutoDTO converterParaListagemDTO(Produto produto){
+        ProdutoDTO dto = new ProdutoDTO();
+
+        dto.setDescricao(produto.getDescricao());
+        dto.setNome_produto(produto.getNomeProduto());
+        dto.setPreco(produto.getPreco());
+        dto.setEstoque_disponivel(produto.getEstoqueDisponivel());
+        dto.setImagem_url(produto.getImagemUrl());
+
+        return dto;
     }
 }

@@ -2,6 +2,7 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Pedido;
 import br.com.ecommerce.api.service.PedidoService;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,18 @@ public class PedidoController {
     @GetMapping("/{id}")
     public ResponseEntity<?> pedidoGetById(@RequestParam Integer id){
         Pedido pedido = pedidoService.pedidoGetById(id);
+
+        if (pedido == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Pedido nao encontrado");
+        }
+
+        return ResponseEntity.ok(pedido);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePedidoById(@PathVariable Integer id){
+        Pedido pedido = pedidoService.deletePedidoById(id);
 
         if (pedido == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

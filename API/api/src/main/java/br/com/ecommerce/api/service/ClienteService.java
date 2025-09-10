@@ -2,6 +2,8 @@ package br.com.ecommerce.api.service;
 
 import br.com.ecommerce.api.model.Cliente;
 import br.com.ecommerce.api.repository.ClienteRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +27,21 @@ public class ClienteService {
 
     public Cliente cadastrarCliente(Cliente cl) {
         return clienteRepository.save(cl);
+    }
+
+    public Cliente getById(Integer id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
+
+    public Cliente deletarClienteById(Integer id) {
+        Cliente cliente = getById(id);
+
+        if (cliente == null) {
+            return null;
+        }
+
+        clienteRepository.delete(cliente);
+        return cliente;
     }
 
 }

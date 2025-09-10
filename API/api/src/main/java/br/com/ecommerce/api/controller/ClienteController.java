@@ -31,15 +31,39 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cl){
+    public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cl){
         Cliente cliente = clienteService.cadastrarCliente(cl);
 //        Para retornar 200
 //        return ResponseEntity.ok(cliente);
 
         if (cliente == null){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Erro no cadastro de cliente");
         }
 //        Para retornar 201
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+    }
+
+//    Request onde se envia um valor na url
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getClienteById(@PathVariable Integer id){
+        Cliente cliente = clienteService.getById(id);
+
+        if (cliente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Cliente nao encontrado");
+        }
+        return ResponseEntity.ok(cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarClienteById(@PathVariable Integer id){
+        Cliente cliente = clienteService.deletarClienteById(id);
+
+        if (cliente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Cliente nao encontrado");
+        }
+        return ResponseEntity.ok(cliente);
     }
 }

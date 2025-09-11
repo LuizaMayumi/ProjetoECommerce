@@ -58,7 +58,7 @@ public class ItemPedidoController {
         return ResponseEntity.ok(itemPedido);
     }
 
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateItemPedidoById(@PathVariable Integer id, @RequestBody ItemPedido ip){
         ItemPedido itemPedido = itemPedidoService.updateItemPedido(id, ip);
         if (itemPedido == null){

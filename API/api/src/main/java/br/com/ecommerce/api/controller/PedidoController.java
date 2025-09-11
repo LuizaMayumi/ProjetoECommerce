@@ -57,4 +57,15 @@ public class PedidoController {
 
         return ResponseEntity.ok(pedido);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePedidoById(@PathVariable Integer id, @RequestBody Pedido pedido){
+        Pedido pd = pedidoService.deletePedidoById(id);
+        if (pd == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Pedido nao encontrado");
+        }
+
+        return ResponseEntity.ok(pd);
+    }
 }

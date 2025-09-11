@@ -68,4 +68,16 @@ public class ClienteController {
         }
         return ResponseEntity.ok(cliente);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarCliente(@PathVariable Integer id, @RequestBody Cliente cl){
+        ClienteDTO cliente = clienteService.updateCliente(id, cl);
+
+        if (cliente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Erro ao editar usuario");
+        }
+
+        return ResponseEntity.ok(cliente);
+    }
 }

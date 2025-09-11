@@ -38,8 +38,8 @@ public class ProdutoService {
         return produto;
     }
 
-    public Produto updateProduto(Produto produto){
-        Produto prod =  produtoGetById(produto.getId());
+    public Produto updateProduto(Integer id, Produto produto){
+        Produto prod =  produtoGetById(id);
 
         if (prod == null){
             return null;

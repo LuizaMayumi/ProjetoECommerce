@@ -50,9 +50,23 @@ public class ClienteService {
         return cliente;
     }
 
-//    public Cliente atualizarCliente(Integer id, Cliente clienteNovo) {
-//
-//    }
+    public ClienteDTO updateCliente(Integer id, Cliente clienteNovo) {
+        Cliente cl = getById(id);
+
+        if  (cl == null) {
+            return null;
+        }
+
+        clienteNovo.setEmail(cl.getEmail());
+        clienteNovo.setDataCadastro(cl.getDataCadastro());
+        clienteNovo.setTelefone(cl.getTelefone());
+        clienteNovo.setSenha(cl.getSenha());
+        clienteNovo.setNomeCompleto(cl.getNomeCompleto());
+
+        clienteRepository.save(clienteNovo);
+
+        return converterParaListagemDTO(clienteNovo);
+    }
 
 
     private ClienteDTO converterParaListagemDTO(Cliente cliente) {

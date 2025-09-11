@@ -61,4 +61,20 @@ public class ProdutoService {
 
         return dto;
     }
+
+    public Produto updateProduto(Produto produto, Integer id){
+        Produto prod = produtoGetById(id);
+
+        if (prod == null){
+            return null;
+        }
+
+        prod.setNomeProduto(produto.getNomeProduto());
+        prod.setDescricao(produto.getDescricao());
+        prod.setPreco(produto.getPreco());
+        prod.setEstoqueDisponivel(produto.getEstoqueDisponivel());
+        prod.setImagemUrl(produto.getImagemUrl());
+        return produtoRepository.save(prod);
+
+    }
 }

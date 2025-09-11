@@ -7,6 +7,7 @@ import br.com.ecommerce.api.service.PagamentoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
 
@@ -54,6 +55,18 @@ public class PagamentoController {
 
         if (pagamento == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Metodo de pagamento nao encontrado");
+        }
+
+        return ResponseEntity.ok(pagamento);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePagamentoById(@PathVariable Integer id, @RequestBody Pagamento pagamento){
+        Pagamento pg = pagamentoService.updatePagamento(id, pagamento);
+
+        if (pg == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Pagamento nao encontrado");
         }
 
         return ResponseEntity.ok(pagamento);

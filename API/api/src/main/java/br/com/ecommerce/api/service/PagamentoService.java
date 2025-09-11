@@ -53,4 +53,18 @@ public class PagamentoService {
         pagamentoRepository.delete(pagamento);
         return pagamento;
     }
+
+    public Pagamento updatePagamento(Integer id, Pagamento pagamento){
+        Pagamento pg = pagamentoGetById(id);
+
+        if(pagamento == null){
+            return null;
+        }
+
+        pg.setStatus(pagamento.getStatus());
+        pg.setFormaPagamento(pagamento.getFormaPagamento());
+        pg.setDataPagamento(pagamento.getDataPagamento());
+
+        return pagamentoRepository.save(pg);
+    }
 }

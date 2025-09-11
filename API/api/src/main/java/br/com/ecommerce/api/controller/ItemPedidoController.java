@@ -2,6 +2,7 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.ItemPedido;
 import br.com.ecommerce.api.service.ItemPedidoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/itemPedido")
 
+@Tag(name = "Controller ItemPedido", description = "Metodos do itemPedido")
 public class ItemPedidoController {
     private final ItemPedidoService itemPedidoService;
 

@@ -3,6 +3,7 @@ package br.com.ecommerce.api.controller;
 import br.com.ecommerce.api.dto.ClienteDTO;
 import br.com.ecommerce.api.model.Cliente;
 import br.com.ecommerce.api.service.ClienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 // RequestMapping define a rota para encontrar a Controller cliente
 @RequestMapping("/api/clientes")
 
+@Tag(name = "Controller Cliente", description = "Metodos do Cliente")
 public class ClienteController {
 //    Controller depende do Service
 //    Service depende de Repository

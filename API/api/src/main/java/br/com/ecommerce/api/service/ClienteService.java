@@ -3,8 +3,6 @@ package br.com.ecommerce.api.service;
 import br.com.ecommerce.api.dto.ClienteDTO;
 import br.com.ecommerce.api.model.Cliente;
 import br.com.ecommerce.api.repository.ClienteRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

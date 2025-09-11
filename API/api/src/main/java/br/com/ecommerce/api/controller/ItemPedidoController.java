@@ -1,6 +1,5 @@
 package br.com.ecommerce.api.controller;
 
-import br.com.ecommerce.api.dto.itemPedidoDTO;
 import br.com.ecommerce.api.model.ItemPedido;
 import br.com.ecommerce.api.service.ItemPedidoService;
 import org.springframework.http.HttpStatus;
@@ -49,13 +48,23 @@ public class ItemPedidoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteItemPedidoById(@PathVariable Integer id){
-        ItemPedido itemPedido = itemPedidoService.delteItemPedido(id);
+        ItemPedido itemPedido = itemPedidoService.deleteItemPedido(id);
 
         if (itemPedido == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Item nao encontrado");
         }
 
+        return ResponseEntity.ok(itemPedido);
+    }
+
+    @PutMapping("/{id")
+    public ResponseEntity<?> updateItemPedidoById(@PathVariable Integer id, @RequestBody ItemPedido ip){
+        ItemPedido itemPedido = itemPedidoService.updateItemPedido(id, ip);
+        if (itemPedido == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item nao encontrado");
+        }
+        
         return ResponseEntity.ok(itemPedido);
     }
 }

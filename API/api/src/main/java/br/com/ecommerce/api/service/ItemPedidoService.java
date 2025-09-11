@@ -26,7 +26,7 @@ public class ItemPedidoService {
         return itemPedidoRepository.findById(id).orElse(null);
     }
 
-    public ItemPedido delteItemPedido(Integer id){
+    public ItemPedido deleteItemPedido(Integer id){
         ItemPedido itemPedido = itemPedidoById(id);
 
         if (itemPedido == null){
@@ -35,5 +35,19 @@ public class ItemPedidoService {
 
         itemPedidoRepository.delete(itemPedido);
         return itemPedido;
+    }
+
+    public ItemPedido updateItemPedido(Integer id, ItemPedido itemPedido){
+        ItemPedido ip = itemPedidoRepository.findById(id).orElse(null);
+
+        if (ip == null){
+            return null;
+        }
+
+        ip.setQuantidade(itemPedido.getQuantidade());
+        ip.setPedido(itemPedido.getPedido());
+        ip.setProduto(itemPedido.getProduto());
+
+        return itemPedidoRepository.save(ip);
     }
 }

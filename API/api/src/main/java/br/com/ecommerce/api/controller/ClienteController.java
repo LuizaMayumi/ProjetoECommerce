@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.dto.ClienteDTO;
 import br.com.ecommerce.api.model.Cliente;
 import br.com.ecommerce.api.service.ClienteService;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,9 @@ public class ClienteController {
 
 //    Listar todos
     @GetMapping
-    public ResponseEntity<List<Cliente>> getAllCliente(){
-        List<Cliente> clientes = clienteService.findAll();
+    public ResponseEntity<List<ClienteDTO>> getAllCliente(){
+        List<ClienteDTO> clientes = clienteService.findAll();
+
         return ResponseEntity.ok(clientes);
     }
 
